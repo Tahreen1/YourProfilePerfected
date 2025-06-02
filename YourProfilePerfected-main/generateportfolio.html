@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background-color: #CBDDEC; /* Celeste */
+            color: #bb6fd8; /* Midnight */
+            font-family: "Clarkson", Helvetica, sans-serif;
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CBDDEC;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #bb6fd8 ;
+        }
+        
+        .navbar {
+            background-color: #bb6fd8; /* Midnight */
+            color: #3F4E4F; /* Dark Grey */
+            height: 90px; /* Increased navbar height */
+            padding: 10px 10px; /* Adjusted padding */
+            width: 100%; /* Full-length navbar */
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            position: fixed; /* Fixed positioning to keep navbar at top */
+        }
+        .navbar a {
+            color: #F0F4F8 !important; /* Light color for better visibility */
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            color: #CBDDEC !important; /* Celeste */
+        }
+        .navbar-toggler {
+            border: none;
+        }
+        .navbar-toggler:focus {
+            outline: none;
+            box-shadow: none;
+        }
+        .navbar-collapse {
+            justify-content: flex-end;
+        }
+        .navbar .container {
+            background-color: transparent; /* Make navbar container transparent */
+            box-shadow: none;
+            padding: 0 15px;
+            margin: 0 auto;
+        }
+        .link-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        .link-indicator i {
+            margin-right: 8px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .copy-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .page-container {
+            padding-top: 1400px; /* Removed padding since we have a dedicated top section */
+            text-align: center;
+            margin: 0 auto;
+        }
+        
+        
+        .options-container {
+            background-color: #FFFFFF; /* White */
+            border-radius: 15px;
+            padding: 40px;
+            margin: 30px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            max-width: 1100px;
+        }
+        
+        .heading {
+            font-size: 32px;
+            font-weight: bold;
+            color: #3F4E4F; /* Dark Grey */
+            margin-bottom: 15px;
+        }
+        
+        .subtext {
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        
+        .templates {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        @media (max-width: 992px) {
+            .templates {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .templates {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .template {
+            height: 200px;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s;
+            color: #3F4E4F;
+            text-decoration: none;
+            font-weight: bold;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .template:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .template img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: transform 0.5s;
+        }
+        
+        .template:hover img {
+            transform: scale(1.1);
+        }
+        
+        .template-overlay-red{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: #720909;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .template-overlay-blue{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: #163853;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .template-overlay-green{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: #2b554e;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        
+        .template-overlay-beige{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: #897c73;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+       
+        .template-overlay-bw{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background:  #000000;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .template-overlay-dark{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background:#121212;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        
+        .template-overlay-bluegreen{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background:  #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .template-overlay-lemongreen{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background:  #D1E189;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .template-overlay-orange{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background:   #946c0a;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .template-overlay-neon{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #00ffff,#ff00ff);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .template-overlay-softerneon{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(90deg,#d400d4,#00cccc);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .template-overlay-girl{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(90deg,#9370DB , #FF9AA2,  #FFB7B2,#E2F0CB );
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .template-overlay-uiux{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background:#b48195;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .template-overlay-typo{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background:    #ffbe0b;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .template-overlay-fullstack{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background:#1d4ed8;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        
+        .template:hover .template-overlay {
+            padding-bottom: 25px;
+        }
+        
+        .option-card {
+            background-color: #bb6fd8;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            width: 500px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            background-color: #8a50b3;
+        }
+        
+        .option-card h3 {
+            color: #F0F4F8;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .option-card p {
+            color: white;
+        }
+        
+        .section-title {
+            color: #495057;
+            margin-bottom: 20px;
+        }
+        
+        h1, h2 {
+            color: #3F4E4F; /* Dark Grey */
+            font-weight: bold;
+        }
+        
+        
+        /* Animation for the link */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .animated-link {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a href="#" class="navbar-brand">Your Profile, Perfected</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#how-it-works">How It Works</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-container container">
+        <h2 class="text-center mb-4">The link for your personalised portfolio is</h2>
+        <div class="link-container" id="personalizedLink">
+            <!-- Will be filled by JavaScript -->
+        </div>
+        <div class="link-indicator">
+            <p>The default theme is based on the website's colors.</p>
+        </div>
+    
+        
+        <div class="options-container text-center mt-5 p-4">
+            <div class="line"></div>
+            <h2 class="heading">Want to Personalise?</h2>
+            <p class="subtext">Choose from these stunning templates below</p>
+            <div class="templates">
+                <a href="blue.html" class="template text-decoration-none">
+                    <img src="bluetemplate.png" alt="Modern Portfolio Template">
+                    <div class="template-overlay-blue">
+                        <span>Modern Blue</span>
+                    </div>
+                </a>
+                <a href="red.html" class="template text-decoration-none">
+                    <img src="redtemplate.png" alt="Creative Portfolio Template">
+                    <div class="template-overlay-red">
+                        <span>Classy Red</span>
+                    </div>
+                </a>
+                <a href="green.html" class="template text-decoration-none">
+                    <img src="greentemplate.png" alt="Corporate Portfolio Template">
+                    <div class="template-overlay-green">
+                        <span>Corporate Green</span>
+                    </div>
+                </a>
+                <a href="lemongreen.html" class="template text-decoration-none">
+                    <img src="lemongreen.png" alt="Developer Portfolio Template">
+                    <div class="template-overlay-lemongreen">
+                        <span>Quirky Lemon</span>
+                    </div>
+                </a>
+                <a href="beige.html" class="template text-decoration-none">
+                    <img src="beige.png" alt="Minimalist Portfolio Template">
+                    <div class="template-overlay-beige">
+                        <span>Minimalist Beige</span>
+                    </div>
+                </a>
+                <a href="grey.html" class="template text-decoration-none">
+                    <img src="bwtemplate.png" alt="Developer Portfolio Template">
+                    <div class="template-overlay-bw">
+                        <span>Developer Focus</span>
+                    </div>
+                </a>
+                <a href="bluegreen.html" class="template text-decoration-none">
+                    <img src="bluegreen.png" alt="Minimalist Portfolio Template">
+                    <div class="template-overlay-bluegreen">
+                        <span>Revamped Blue</span>
+                    </div>
+                </a>
+                <a href="dark.html" class="template text-decoration-none">
+                    <img src="darktemplate.png" alt="Dark Mode Portfolio Template">
+                    <div class="template-overlay-dark">
+                        <span>Dark Mode</span>
+                    </div>
+                </a>
+                <a href="orange.html" class="template text-decoration-none">
+                    <img src="orange.png" alt="Dark Mode Portfolio Template">
+                    <div class="template-overlay-orange">
+                        <span>Cool Orange</span>
+                    </div>
+                </a>
+                <a href="neon.html" class="template text-decoration-none">
+                    <img src="neon.png" alt="Minimalist Portfolio Template">
+                    <div class="template-overlay-neon">
+                        <span>Neon Vibes</span>
+                    </div>
+                </a>
+                <a href="lighterneon.html" class="template text-decoration-none">
+                    <img src="softerneon.png" alt="Dark Mode Portfolio Template">
+                    <div class="template-overlay-softerneon">
+                        <span>Softer Neon</span>
+                    </div>
+                </a>
+                <a href="girlboss.html" class="template text-decoration-none">
+                    <img src="girlboss.png" alt="Dark Mode Portfolio Template">
+                    <div class="template-overlay-girl">
+                        <span>Girl Boss</span>
+                    </div>
+                </a>
+                <a href="uiux.html" class="template text-decoration-none">
+                    <img src="uiux.png" alt="Dark Mode Portfolio Template">
+                    <div class="template-overlay-uiux">
+                        <span>UI UX</span>
+                    </div>
+                </a>
+                <a href="typographic.html" class="template text-decoration-none">
+                    <img src="playful.png" alt="Dark Mode Portfolio Template">
+                    <div class="template-overlay-typo">
+                        <span>Typographic Creative</span>
+                    </div>
+                </a>
+                <a href="fullstack.html" class="template text-decoration-none">
+                    <img src="fullstack.png" alt="Dark Mode Portfolio Template">
+                    <div class="template-overlay-fullstack">
+                        <span>Full Stack</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        window.onload = function() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                
+                // Update display name
+               
+            const username =  currentUser.displayName;
+    
+                document.getElementById("personalizedLink").innerHTML = 
+                `<div class="option-card animated-link">
+                    <a href="click.html?user=${username}" target="_blank" 
+   style="color: white; font-size: 30px; font-family: 'Clarkson', sans-serif; text-decoration: none;">
+    https://your-profile-perfected.vercel.app/${username}
+</a>
+                    
+
+                </div>`;
+            
+        };
+        
+        function redirectToPortfolio() {
+           window.location.href = "click.html";
+
+        }
+    </script>
+</body>
+</html>
